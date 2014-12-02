@@ -9,7 +9,12 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *startBtn;
+@property (weak, nonatomic) IBOutlet UIButton *stopBtn;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loader;
+@property (weak, nonatomic) IBOutlet UIProgressView *processView;
+@property (weak, nonatomic) IBOutlet UILabel *percentLbl;
 @end
 
 @implementation ViewController
@@ -27,5 +32,9 @@
 -(IBAction) startGenerateJSONFile
 {
     
+}
+- (IBAction)startTapped:(UIButton *)sender {
+}
+- (IBAction)stopTapped:(UIButton *)sender {
 }
 @end
