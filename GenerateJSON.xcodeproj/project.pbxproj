@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA7D8C901A2D4E3A00A7B261 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA7D8C8F1A2D4E3A00A7B261 /* Foundation.framework */; };
+		BA7D8C921A2D4E3F00A7B261 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA7D8C911A2D4E3F00A7B261 /* UIKit.framework */; };
+		BA7D8C941A2D4E4400A7B261 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA7D8C931A2D4E4400A7B261 /* QuartzCore.framework */; };
+		BA7D8C961A2D4E6E00A7B261 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA7D8C951A2D4E6E00A7B261 /* CoreGraphics.framework */; };
 		BAE7A00A1A2CB2110070C798 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE7A0091A2CB2110070C798 /* main.m */; };
 		BAE7A00D1A2CB2110070C798 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE7A00C1A2CB2110070C798 /* AppDelegate.m */; };
 		BAE7A0101A2CB2110070C798 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE7A00F1A2CB2110070C798 /* ViewController.m */; };
@@ -34,6 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA7D8C8F1A2D4E3A00A7B261 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BA7D8C911A2D4E3F00A7B261 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		BA7D8C931A2D4E4400A7B261 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BA7D8C951A2D4E6E00A7B261 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		BAE7A0041A2CB2110070C798 /* GenerateJSON.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GenerateJSON.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE7A0081A2CB2110070C798 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BAE7A0091A2CB2110070C798 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -68,6 +76,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA7D8C961A2D4E6E00A7B261 /* CoreGraphics.framework in Frameworks */,
+				BA7D8C941A2D4E4400A7B261 /* QuartzCore.framework in Frameworks */,
+				BA7D8C921A2D4E3F00A7B261 /* UIKit.framework in Frameworks */,
+				BA7D8C901A2D4E3A00A7B261 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +96,10 @@
 		BAE79FFB1A2CB2110070C798 = {
 			isa = PBXGroup;
 			children = (
+				BA7D8C951A2D4E6E00A7B261 /* CoreGraphics.framework */,
+				BA7D8C931A2D4E4400A7B261 /* QuartzCore.framework */,
+				BA7D8C911A2D4E3F00A7B261 /* UIKit.framework */,
+				BA7D8C8F1A2D4E3A00A7B261 /* Foundation.framework */,
 				BAE7A0061A2CB2110070C798 /* GenerateJSON */,
 				BAE7A0201A2CB2110070C798 /* GenerateJSONTests */,
 				BAE7A0051A2CB2110070C798 /* Products */,
@@ -395,7 +411,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -430,7 +446,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -510,6 +526,7 @@
 				BAE7A0291A2CB2110070C798 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BAE7A02A1A2CB2110070C798 /* Build configuration list for PBXNativeTarget "GenerateJSONTests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +535,7 @@
 				BAE7A02C1A2CB2110070C798 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

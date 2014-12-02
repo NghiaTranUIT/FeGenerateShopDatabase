@@ -9,6 +9,7 @@
 #import "FeData.h"
 #import "NSArray+FeRandom.h"
 #import "NSDate+FeRandomDate.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface FeData ()
 
@@ -114,10 +115,22 @@
 #pragma mark - Product
 -(NSString *) randomProductName
 {
-    
+    return (NSString *)[_arrProductName randomObject];
 }
 -(NSString *) randomProductID
 {
+    NSUUID *uuid = [NSUUID UUID];
+    return uuid.UUIDString;
+}
+-(NSNumber *) randomProductPrice
+{
+    CGFloat price = [self randomIndexFrom:1000 to:10000000];
     
+    return @(price);
+}
+-(NSNumber *) randomProductQuality
+{
+    CGFloat quality = [self randomIndexFrom:1 to:20];
+    return @(quality);
 }
 @end
