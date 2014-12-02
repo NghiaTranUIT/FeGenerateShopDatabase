@@ -7,6 +7,20 @@
 //
 
 #import "FeGenerateObjectManager.h"
+#import "FeInvoce.h"
+
+#define kFe_FeGenerateObjectManager_NumberOfThread 10
+#define kFe_FeGenerateObjectManager_NumberOfObjectInThread 10000
+
+@interface FeGenerateObjectManager ()
+{
+    dispatch_group_t group;
+    
+    NSInteger numberOfWork;
+    CGFloat percent;
+}
+@property (strong, nonatomic) NSOperationQueue *queue;
+@end
 
 @implementation FeGenerateObjectManager
 +(instancetype) shareInstance
@@ -19,5 +33,67 @@
     });
     
     return instance;
+}
+-(instancetype) init
+{
+    self = [super init];
+    if (self)
+    {
+        _queue = [[NSOperationQueue alloc] init];
+        _queue.maxConcurrentOperationCount = kFe_FeGenerateObjectManager_NumberOfThread;
+        group = dispatch_group_create();
+        
+        numberOfWork = kFe_FeGenerateObjectManager_NumberOfThread * kFe_FeGenerateObjectManager_NumberOfObjectInThread;
+        percent = 0;
+    }
+    return self;
+}
+-(void) generateDumpDataOnBackgroundWithPercentBlock:(FeFeGenerateObjectManagerPercentBlock)percentBlock completionBlock:(FeGenerateObjectManagerCompletionBlock)completionBlock
+{
+    __weak FeGenerateObjectManager *weakSelf = self;
+    for (NSInteger i = 0; i < kFe_FeGenerateObjectManager_NumberOfThread; i++)
+    {
+        
+        // Enter group
+        dispatch_group_enter(group);
+        
+        // Init
+        NSBlockOperation *thread = [NSBlockOperation blockOperationWithBlock:^
+        {
+            NSMutableArray *arrInvoice = [NSMutableArray arrayWithCapacity:kFe_FeGenerateObjectManager_NumberOfObjectInThread];
+            for (NSInteger i = 0; i < kFe_FeGenerateObjectManager_NumberOfObjectInThread; i++)
+            {
+                // Invoice
+                FeInvoce *invoice = [FeInvoce invoiceByRandom];
+                
+                // Added
+                [arrInvoice addObject:invoice];
+                
+            }
+            
+            // Write arr to JSON file
+            
+            
+            // When writefile completion
+            dispatch_group_leave(group);
+        }];
+        
+        // Priortity
+        thread.queuePriority = NSOperationQueuePriorityHigh;
+        
+        // Run
+        [weakSelf.queue addOperation:thread];
+    }
+    
+    
+    // Wait
+    dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if (completionBlock)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(nil);
+            });
+        }
+    });
 }
 @end

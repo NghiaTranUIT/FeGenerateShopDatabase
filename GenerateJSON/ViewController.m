@@ -15,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loader;
 @property (weak, nonatomic) IBOutlet UIProgressView *processView;
 @property (weak, nonatomic) IBOutlet UILabel *percentLbl;
+
+@property (assign, nonatomic) BOOL isGeneratingData;
+
 @end
 
 @implementation ViewController
@@ -22,6 +25,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    _loader.hidden = YES;
+    _processView.hidden = YES;
+    _percentLbl.hidden = YES;
+    _isGeneratingData = NO;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,8 +42,22 @@
 {
     
 }
-- (IBAction)startTapped:(UIButton *)sender {
+- (IBAction)startTapped:(UIButton *)sender
+{
+    if (_isGeneratingData == NO)
+    {
+        _isGeneratingData = YES;
+        
+        
+    }
 }
-- (IBAction)stopTapped:(UIButton *)sender {
+- (IBAction)stopTapped:(UIButton *)sender
+{
+    if (_isGeneratingData)
+    {
+        _isGeneratingData = NO;
+        
+        
+    }
 }
 @end
