@@ -27,6 +27,8 @@
 // Address
 @property (strong, nonatomic) NSMutableArray *arrAddress;
 
+// Array Product
+@property (strong, nonatomic) NSMutableArray *arrProductName;
 @end
 
 @implementation FeData
@@ -64,6 +66,8 @@
     _arrDomian = [@[@"gmail.com",@"yahoo.com",@"yahoo.com.vn",@"hotmail.com",@"feels.com",@"quick.com",@"mail.com"] mutableCopy];
     
     _arrAddress = [@[@"Ho Chi Minh",@"Ba Ria Vung Tau",@"Ha Noi",@"Dong Nai",@"Xuyen Moc",@"Thanh Hoa",@"Tien Giang",@"Kien Giang",@"Ca Mau",@"Ha Tien",@"Moc Chau",@"Lai Chau",@"Bac Kan",@"Ha Tinh",@"Ha Dong",@"Da Nang",@"Thua Thien Hue",@"Komtom",@"Daklak",@"Vinh",@"Hai Phong",@"Binh Thuan",@"Phan Rang"] mutableCopy];
+    
+    _arrProductName = [@[@"Com hop",@"Sua",@"Nuoc Ngot",@"Cocacola",@"Pepsi",@"Mirinda",@"Sting",@"Redbull",@"Aquafina",@"Banh",@"Keo",@"But chi",@"But Muc",@"But bi",@"Chuot May Tinh",@"Ban Phim",@"Man Hinh ",@"Dien Thoati iPhone",@"Dien Thoai Lumina",@"Dien Thoati SamSung",@"PhoMat Con Bo Cuoi",@"Balo",@"LapTop ASUS",@"Laptop Dell",@"Macbook",@"iMac",@"MacMini",@"Ban",@"Bong Den",@"Bong Den",@"Ban",@"Ghe",@"Tu",@"Giuong",@"Quan",@"Ao",@"Khau Trang",@"Kieng",@"Vo",@"Giay",@"Dep",@"Tivi"] mutableCopy];
 }
 -(NSInteger) randomIndexFrom:(NSInteger) from to:(NSInteger) to
 {
