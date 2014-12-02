@@ -11,6 +11,7 @@
 		BA7D8C921A2D4E3F00A7B261 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA7D8C911A2D4E3F00A7B261 /* UIKit.framework */; };
 		BA7D8C941A2D4E4400A7B261 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA7D8C931A2D4E4400A7B261 /* QuartzCore.framework */; };
 		BA7D8C961A2D4E6E00A7B261 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA7D8C951A2D4E6E00A7B261 /* CoreGraphics.framework */; };
+		BA7D8C9A1A2D51DD00A7B261 /* FeUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7D8C991A2D51DD00A7B261 /* FeUtility.m */; };
 		BAE7A00A1A2CB2110070C798 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE7A0091A2CB2110070C798 /* main.m */; };
 		BAE7A00D1A2CB2110070C798 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE7A00C1A2CB2110070C798 /* AppDelegate.m */; };
 		BAE7A0101A2CB2110070C798 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE7A00F1A2CB2110070C798 /* ViewController.m */; };
@@ -42,6 +43,8 @@
 		BA7D8C911A2D4E3F00A7B261 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BA7D8C931A2D4E4400A7B261 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BA7D8C951A2D4E6E00A7B261 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BA7D8C981A2D51DD00A7B261 /* FeUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeUtility.h; sourceTree = "<group>"; };
+		BA7D8C991A2D51DD00A7B261 /* FeUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeUtility.m; sourceTree = "<group>"; };
 		BAE7A0041A2CB2110070C798 /* GenerateJSON.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GenerateJSON.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE7A0081A2CB2110070C798 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BAE7A0091A2CB2110070C798 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -93,13 +96,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BAE79FFB1A2CB2110070C798 = {
+		BA7D8C971A2D51CA00A7B261 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				BA7D8C981A2D51DD00A7B261 /* FeUtility.h */,
+				BA7D8C991A2D51DD00A7B261 /* FeUtility.m */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		BA7D8C9B1A2D521A00A7B261 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
 				BA7D8C951A2D4E6E00A7B261 /* CoreGraphics.framework */,
 				BA7D8C931A2D4E4400A7B261 /* QuartzCore.framework */,
 				BA7D8C911A2D4E3F00A7B261 /* UIKit.framework */,
 				BA7D8C8F1A2D4E3A00A7B261 /* Foundation.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		BAE79FFB1A2CB2110070C798 = {
+			isa = PBXGroup;
+			children = (
+				BA7D8C9B1A2D521A00A7B261 /* Framework */,
 				BAE7A0061A2CB2110070C798 /* GenerateJSON */,
 				BAE7A0201A2CB2110070C798 /* GenerateJSONTests */,
 				BAE7A0051A2CB2110070C798 /* Products */,
@@ -160,6 +180,7 @@
 		BAE7A02D1A2CB2180070C798 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BA7D8C971A2D51CA00A7B261 /* Utility */,
 				BAE7A0491A2CBE210070C798 /* Category */,
 				BAE7A0421A2CB9120070C798 /* Data */,
 				BAE7A03E1A2CB7860070C798 /* FeGenerateObject */,
@@ -336,6 +357,7 @@
 				BAE7A03A1A2CB2A80070C798 /* FeInvoce.m in Sources */,
 				BAE7A00D1A2CB2110070C798 /* AppDelegate.m in Sources */,
 				BAE7A00A1A2CB2110070C798 /* main.m in Sources */,
+				BA7D8C9A1A2D51DD00A7B261 /* FeUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

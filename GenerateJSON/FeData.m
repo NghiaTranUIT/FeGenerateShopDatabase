@@ -10,6 +10,7 @@
 #import "NSArray+FeRandom.h"
 #import "NSDate+FeRandomDate.h"
 #import <QuartzCore/QuartzCore.h>
+#import "FeUtility.h"
 
 @interface FeData ()
 
@@ -70,15 +71,7 @@
     
     _arrProductName = [@[@"Com hop",@"Sua",@"Nuoc Ngot",@"Cocacola",@"Pepsi",@"Mirinda",@"Sting",@"Redbull",@"Aquafina",@"Banh",@"Keo",@"But chi",@"But Muc",@"But bi",@"Chuot May Tinh",@"Ban Phim",@"Man Hinh ",@"Dien Thoati iPhone",@"Dien Thoai Lumina",@"Dien Thoati SamSung",@"PhoMat Con Bo Cuoi",@"Balo",@"LapTop ASUS",@"Laptop Dell",@"Macbook",@"iMac",@"MacMini",@"Ban",@"Bong Den",@"Bong Den",@"Ban",@"Ghe",@"Tu",@"Giuong",@"Quan",@"Ao",@"Khau Trang",@"Kieng",@"Vo",@"Giay",@"Dep",@"Tivi"] mutableCopy];
 }
--(NSInteger) randomIndexFrom:(NSInteger) from to:(NSInteger) to
-{
-    NSInteger min = from;
-    NSInteger max = to;
-    
-    NSInteger randNum = rand() % (max- min) + min; //create the random number.
-    
-    return randNum;
-}
+
 #pragma mark - Customer
 -(NSString *) randomName
 {
@@ -95,7 +88,7 @@
 }
 -(NSString *) randomPhone
 {
-    return [NSString stringWithFormat:@"%ld",(long)[self randomIndexFrom:100000000 to:900000000]];
+    return [NSString stringWithFormat:@"%ld",(long)[FeUtility randomIndexFrom:100000000 to:900000000]];
 }
 -(NSString *) randomeEmailWithName:(NSString *)name
 {
@@ -124,13 +117,13 @@
 }
 -(NSNumber *) randomProductPrice
 {
-    CGFloat price = [self randomIndexFrom:1000 to:10000000];
+    CGFloat price = [FeUtility randomIndexFrom:1000 to:10000000];
     
     return @(price);
 }
 -(NSNumber *) randomProductQuality
 {
-    CGFloat quality = [self randomIndexFrom:1 to:20];
+    CGFloat quality = [FeUtility randomIndexFrom:1 to:20];
     return @(quality);
 }
 
