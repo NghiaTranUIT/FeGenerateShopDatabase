@@ -12,7 +12,11 @@
 @interface FeInvoce : NSObject
 @property (copy, nonatomic) NSString *invoiceID;
 @property (copy, nonatomic) FeCustomer *customer;
-@property (copy, nonatomic) NSString *total;
+@property (strong, nonatomic) NSNumber *total;
 @property (strong, nonatomic) NSMutableArray *arrProduct;
 @property (strong, nonatomic) NSDate *createdAt;
+
+// Init
+-(instancetype) initWithInvoiceID:(NSString *) invoiceID customer:(FeCustomer *) customer total:(NSNumber *) total arrOfProduct:(NSMutableArray *) arrProduct createdAt:(NSDate *) createdAt;
++(instancetype) invoiceByRandom;
 @end

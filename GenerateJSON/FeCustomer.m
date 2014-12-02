@@ -7,6 +7,7 @@
 //
 
 #import "FeCustomer.h"
+#import "FeData.h"
 
 @implementation FeCustomer
 -(instancetype) initWithCustomerID:(NSString *)customerID name:(NSString *)name birthDay:(NSDate *)birthday phone:(NSString *)phone email:(NSString *)email
@@ -25,6 +26,13 @@
 }
 +(instancetype) customerByRandom
 {
+    FeData *data = [FeData shareData];
     
+    NSString *name = [data randomName];
+    NSString *email = [data randomeEmailWithName:name];
+    
+    FeCustomer *customer = [[FeCustomer alloc] initWithCustomerID:[data randomCustomerID] name:name birthDay:[data randomBirthday] phone:[data randomPhone] email:email];
+    
+    return customer;
 }
 @end

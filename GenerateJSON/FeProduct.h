@@ -13,4 +13,8 @@
 @property (copy, nonatomic) NSString *name;
 @property (strong, nonatomic) NSNumber *quality;
 @property (strong, nonatomic) NSNumber *price;
+
+// Init
+-(instancetype) initWithProductID:(NSString *) productID name:(NSString *) name quality:(NSNumber *) quality price:(NSNumber *) price;
++(instancetype) productByRandom;
 @end
