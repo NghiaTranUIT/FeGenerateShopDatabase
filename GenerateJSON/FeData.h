@@ -19,7 +19,7 @@
 -(NSString *) randomAddress;
 -(NSString *) randomPhone;
 -(NSString *) randomeEmailWithName:(NSString *) name;
--(NSDate *) randomBirthday;
+-(NSString *) randomBirthday;
 
 // Product
 -(NSString *) randomProductName;
@@ -29,5 +29,5 @@
 
 // Invoice
 -(NSString *) randomInvoiceID;
--(NSDate *) randomInvoiceCreatedAt;
+-(NSString *) randomInvoiceCreatedAt;
 @end

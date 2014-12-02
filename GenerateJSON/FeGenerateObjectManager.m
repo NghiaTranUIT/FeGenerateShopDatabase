@@ -8,6 +8,7 @@
 
 #import "FeGenerateObjectManager.h"
 #import "FeInvoce.h"
+#import "SBJson4Writer.h"
 
 #define kFe_FeGenerateObjectManager_NumberOfThread 10
 #define kFe_FeGenerateObjectManager_NumberOfObjectInThread 10000
@@ -20,6 +21,7 @@
     CGFloat percent;
 }
 @property (strong, nonatomic) NSOperationQueue *queue;
+@property (strong, nonatomic) SBJson4Writer *writer;
 @end
 
 @implementation FeGenerateObjectManager
@@ -45,6 +47,9 @@
         
         numberOfWork = kFe_FeGenerateObjectManager_NumberOfThread * kFe_FeGenerateObjectManager_NumberOfObjectInThread;
         percent = 0;
+        
+        _writer = [[SBJson4Writer alloc] init];
+        _writer.humanReadable = YES;
     }
     return self;
 }
@@ -72,7 +77,7 @@
             }
             
             // Write arr to JSON file
-            
+            NSString *json = [_writer stringWithObject:arrInvoice];
             
             // When writefile completion
             dispatch_group_leave(group);

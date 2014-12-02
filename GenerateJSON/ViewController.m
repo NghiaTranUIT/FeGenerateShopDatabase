@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "FeInvoce.h"
+#import "SBJson4Writer.h"
+#import "FeGenerateObjectManager.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;
@@ -18,6 +21,7 @@
 
 @property (assign, nonatomic) BOOL isGeneratingData;
 
+@property (strong, nonatomic) SBJson4Writer *writer;
 @end
 
 @implementation ViewController
@@ -30,6 +34,7 @@
     _processView.hidden = YES;
     _percentLbl.hidden = YES;
     _isGeneratingData = NO;
+    
     
 }
 
@@ -48,7 +53,13 @@
     {
         _isGeneratingData = YES;
         
+        FeGenerateObjectManager *generate = [FeGenerateObjectManager shareInstance];
         
+        [generate generateDumpDataOnBackgroundWithPercentBlock:^(CGFloat percent) {
+            
+        } completionBlock:^(NSError *error) {
+            
+        }];
     }
 }
 - (IBAction)stopTapped:(UIButton *)sender

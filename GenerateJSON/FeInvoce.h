@@ -14,9 +14,11 @@
 @property (copy, nonatomic) FeCustomer *customer;
 @property (strong, nonatomic) NSNumber *total;
 @property (strong, nonatomic) NSMutableArray *arrProduct;
-@property (strong, nonatomic) NSDate *createdAt;
+@property (copy, nonatomic) NSString *createdAt;
 
 // Init
--(instancetype) initWithInvoiceID:(NSString *) invoiceID customer:(FeCustomer *) customer total:(NSNumber *) total arrOfProduct:(NSMutableArray *) arrProduct createdAt:(NSDate *) createdAt;
+-(instancetype) initWithInvoiceID:(NSString *) invoiceID customer:(FeCustomer *) customer total:(NSNumber *) total arrOfProduct:(NSMutableArray *) arrProduct createdAt:(NSString *) createdAt;
 +(instancetype) invoiceByRandom;
+
+-(id) proxyForJson;
 @end

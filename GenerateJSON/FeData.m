@@ -31,6 +31,9 @@
 
 // Array Product
 @property (strong, nonatomic) NSMutableArray *arrProductName;
+
+@property (strong, nonatomic) NSDateFormatter *formatter;
+
 @end
 
 @implementation FeData
@@ -70,6 +73,9 @@
     _arrAddress = [@[@"Ho Chi Minh",@"Ba Ria Vung Tau",@"Ha Noi",@"Dong Nai",@"Xuyen Moc",@"Thanh Hoa",@"Tien Giang",@"Kien Giang",@"Ca Mau",@"Ha Tien",@"Moc Chau",@"Lai Chau",@"Bac Kan",@"Ha Tinh",@"Ha Dong",@"Da Nang",@"Thua Thien Hue",@"Komtom",@"Daklak",@"Vinh",@"Hai Phong",@"Binh Thuan",@"Phan Rang"] mutableCopy];
     
     _arrProductName = [@[@"Com hop",@"Sua",@"Nuoc Ngot",@"Cocacola",@"Pepsi",@"Mirinda",@"Sting",@"Redbull",@"Aquafina",@"Banh",@"Keo",@"But chi",@"But Muc",@"But bi",@"Chuot May Tinh",@"Ban Phim",@"Man Hinh ",@"Dien Thoati iPhone",@"Dien Thoai Lumina",@"Dien Thoati SamSung",@"PhoMat Con Bo Cuoi",@"Balo",@"LapTop ASUS",@"Laptop Dell",@"Macbook",@"iMac",@"MacMini",@"Ban",@"Bong Den",@"Bong Den",@"Ban",@"Ghe",@"Tu",@"Giuong",@"Quan",@"Ao",@"Khau Trang",@"Kieng",@"Vo",@"Giay",@"Dep",@"Tivi"] mutableCopy];
+    
+    _formatter = [[NSDateFormatter alloc] init];
+    [_formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 }
 
 #pragma mark - Customer
@@ -100,9 +106,9 @@
     NSString *address = (NSString *)[_arrAddress randomObject];
     return address;
 }
--(NSDate *) randomBirthday
+-(NSString *) randomBirthday
 {
-    return [NSDate randomDateFrom:_date WithCalendar:_calendar];
+    return [_formatter stringFromDate:[NSDate randomDateFrom:_date WithCalendar:_calendar]];
 }
 
 #pragma mark - Product
@@ -133,8 +139,8 @@
     NSUUID *uuid = [NSUUID UUID];
     return uuid.UUIDString;
 }
--(NSDate *) randomInvoiceCreatedAt
+-(NSString *) randomInvoiceCreatedAt
 {
-    return [NSDate randomDateFrom:_date WithCalendar:_calendar];
+    return [_formatter stringFromDate:[NSDate randomDateFrom:_date WithCalendar:_calendar]];
 }
 @end

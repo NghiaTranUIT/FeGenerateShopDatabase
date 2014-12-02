@@ -12,9 +12,10 @@
 #import "FeProduct.h"
 #import "FeUtility.h"
 #import <QuartzCore/QuartzCore.h>
+#import <SBJson4.h>
 
 @implementation FeInvoce
--(instancetype) initWithInvoiceID:(NSString *)invoiceID customer:(FeCustomer *)customer total:(NSNumber *)total arrOfProduct:(NSMutableArray *)arrProduct createdAt:(NSDate *)createdAt
+-(instancetype) initWithInvoiceID:(NSString *)invoiceID customer:(FeCustomer *)customer total:(NSNumber *)total arrOfProduct:(NSMutableArray *)arrProduct createdAt:(NSString *)createdAt
 {
     self = [super init];
     if (self)
@@ -53,5 +54,16 @@
     FeInvoce *invoice = [[FeInvoce alloc] initWithInvoiceID:[data randomInvoiceID] customer:customer total:@(total) arrOfProduct:arrProduct createdAt:[data randomInvoiceCreatedAt]];
     
     return invoice;
+}
+-(id) proxyForJson
+{
+    NSDictionary *dict = @{@"invoiceID":_invoiceID,
+                     @"customer":_customer,
+                     @"total":_total,
+                     @"arrProduct":_arrProduct,
+                     @"createdAt":_createdAt};
+
+    
+    return dict;
 }
 @end

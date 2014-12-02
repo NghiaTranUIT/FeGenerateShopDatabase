@@ -8,7 +8,7 @@
 
 #import "FeProduct.h"
 #import "FeData.h"
-
+#import <SBJson4.h>
 @implementation FeProduct
 -(instancetype) initWithProductID:(NSString *)productID name:(NSString *)name quality:(NSNumber *)quality price:(NSNumber *)price
 {
@@ -29,5 +29,14 @@
     FeProduct *product = [[FeProduct alloc] initWithProductID:[data randomProductID] name:[data randomProductName] quality:[data randomProductQuality] price:[data randomProductPrice]];
     
     return product;
+}
+-(id) proxyForJson
+{
+    NSDictionary *dict = @{@"productID":_productID,
+                           @"name":_name,
+                           @"quality":_quality,
+                           @"price":_price};
+    
+    return dict;
 }
 @end

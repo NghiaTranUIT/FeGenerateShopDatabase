@@ -8,9 +8,9 @@
 
 #import "FeCustomer.h"
 #import "FeData.h"
-
+#import <SBJson4.h>
 @implementation FeCustomer
--(instancetype) initWithCustomerID:(NSString *)customerID name:(NSString *)name birthDay:(NSDate *)birthday phone:(NSString *)phone email:(NSString *)email
+-(instancetype) initWithCustomerID:(NSString *)customerID name:(NSString *)name birthDay:(NSString *)birthday phone:(NSString *)phone email:(NSString *)email
 {
     self = [super init];
     if (self)
@@ -34,5 +34,15 @@
     FeCustomer *customer = [[FeCustomer alloc] initWithCustomerID:[data randomCustomerID] name:name birthDay:[data randomBirthday] phone:[data randomPhone] email:email];
     
     return customer;
+}
+-(id) proxyForJson
+{
+    NSDictionary *dict = @{@"customerID":_customerID,
+                           @"name":_name,
+                           @"birthday":_birthday,
+                           @"phone":_phone,
+                           @"email":_email};
+    
+    return dict;
 }
 @end

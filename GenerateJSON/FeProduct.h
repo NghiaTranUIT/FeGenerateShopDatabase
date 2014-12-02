@@ -17,4 +17,6 @@
 // Init
 -(instancetype) initWithProductID:(NSString *) productID name:(NSString *) name quality:(NSNumber *) quality price:(NSNumber *) price;
 +(instancetype) productByRandom;
+
+-(id) proxyForJson;
 @end
