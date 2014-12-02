@@ -12,7 +12,6 @@
 @interface FeInvoce : NSObject
 @property (copy, nonatomic) NSString *invoiceID;
 @property (copy, nonatomic) FeCustomer *customer;
-@property (strong, nonatomic) NSDate *date;
 @property (copy, nonatomic) NSString *total;
 @property (strong, nonatomic) NSMutableArray *arrProduct;
 @property (strong, nonatomic) NSDate *createdAt;

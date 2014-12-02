@@ -133,4 +133,15 @@
     CGFloat quality = [self randomIndexFrom:1 to:20];
     return @(quality);
 }
+
+#pragma mark - Invoice
+-(NSString *) randomInvoiceID
+{
+    NSUUID *uuid = [NSUUID UUID];
+    return uuid.UUIDString;
+}
+-(NSDate *) randomInvoiceCreatedAt
+{
+    return [NSDate randomDateFrom:_date WithCalendar:_calendar];
+}
 @end

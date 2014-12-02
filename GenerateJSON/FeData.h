@@ -25,4 +25,7 @@
 -(NSNumber *) randomProductQuality;
 -(NSNumber *) randomProductPrice;
 
+// Invoice
+-(NSString *) randomInvoiceID;
+-(NSDate *) randomInvoiceCreatedAt;
 @end
