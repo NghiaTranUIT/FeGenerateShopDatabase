@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface FeProduct : NSObject
-@property (copy, nonatomic) NSString *productID;
-@property (copy, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *productID;
+@property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSNumber *quality;
 @property (strong, nonatomic) NSNumber *price;
 

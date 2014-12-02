@@ -10,8 +10,8 @@
 #import "FeInvoce.h"
 #import "SBJson4Writer.h"
 
-#define kFe_FeGenerateObjectManager_NumberOfThread 10
-#define kFe_FeGenerateObjectManager_NumberOfObjectInThread 10000
+#define kFe_FeGenerateObjectManager_NumberOfThread 1
+#define kFe_FeGenerateObjectManager_NumberOfObjectInThread 5
 
 @interface FeGenerateObjectManager ()
 {
@@ -21,7 +21,6 @@
     CGFloat percent;
 }
 @property (strong, nonatomic) NSOperationQueue *queue;
-@property (strong, nonatomic) SBJson4Writer *writer;
 @end
 
 @implementation FeGenerateObjectManager
@@ -47,16 +46,14 @@
         
         numberOfWork = kFe_FeGenerateObjectManager_NumberOfThread * kFe_FeGenerateObjectManager_NumberOfObjectInThread;
         percent = 0;
-        
-        _writer = [[SBJson4Writer alloc] init];
-        _writer.humanReadable = YES;
     }
     return self;
 }
 -(void) generateDumpDataOnBackgroundWithPercentBlock:(FeFeGenerateObjectManagerPercentBlock)percentBlock completionBlock:(FeGenerateObjectManagerCompletionBlock)completionBlock
 {
+    
     __weak FeGenerateObjectManager *weakSelf = self;
-    for (NSInteger i = 0; i < kFe_FeGenerateObjectManager_NumberOfThread; i++)
+    for (__block NSInteger i = 0; i < kFe_FeGenerateObjectManager_NumberOfThread; i++)
     {
         
         // Enter group
@@ -66,7 +63,7 @@
         NSBlockOperation *thread = [NSBlockOperation blockOperationWithBlock:^
         {
             NSMutableArray *arrInvoice = [NSMutableArray arrayWithCapacity:kFe_FeGenerateObjectManager_NumberOfObjectInThread];
-            for (NSInteger i = 0; i < kFe_FeGenerateObjectManager_NumberOfObjectInThread; i++)
+            for (NSInteger j = 0; j < kFe_FeGenerateObjectManager_NumberOfObjectInThread; j++)
             {
                 // Invoice
                 FeInvoce *invoice = [FeInvoce invoiceByRandom];
@@ -77,7 +74,20 @@
             }
             
             // Write arr to JSON file
-            NSString *json = [_writer stringWithObject:arrInvoice];
+            SBJson4Writer *writer = [[SBJson4Writer alloc] init];
+            writer.humanReadable = YES;
+            
+            NSData *json = [writer dataWithObject:arrInvoice];
+            
+            // Write to file
+            NSError *err;
+            //[json writeToFile:[self applicationDocumentsDirectory] atomically:YES encoding:NSUTF16StringEncoding error:&err];
+            [json writeToFile:[self applicationDocumentsDirectory] options:NSDataWritingAtomic error:&err];
+            
+            if (err)
+            {
+                NSLog(@"error when writing file");
+            }
             
             // When writefile completion
             dispatch_group_leave(group);
@@ -100,5 +110,15 @@
             });
         }
     });
+}
+- (NSString *) applicationDocumentsDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    
+    NSUUID *uuid = [NSUUID UUID];
+    basePath = [basePath stringByAppendingString:[NSString stringWithFormat:@"/%@.txt",uuid.UUIDString]];
+    
+    return basePath;
 }
 @end

@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface FeCustomer : NSObject
-@property (copy, nonatomic) NSString *customerID;
-@property (copy, nonatomic) NSString *name;
-@property (copy, nonatomic) NSString *birthday;
-@property (copy, nonatomic) NSString *address;
-@property (copy, nonatomic) NSString *phone;
-@property (copy, nonatomic) NSString *email;
+@property (strong, nonatomic) NSString *customerID;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *birthday;
+@property (strong, nonatomic) NSString *address;
+@property (strong, nonatomic) NSString *phone;
+@property (strong, nonatomic) NSString *email;
 
 -(instancetype) initWithCustomerID:(NSString *) customerID name:(NSString *) name birthDay:(NSString *) birthday phone:(NSString *) phone email:(NSString *) email;
 

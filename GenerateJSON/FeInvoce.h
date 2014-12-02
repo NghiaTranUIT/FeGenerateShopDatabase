@@ -10,11 +10,11 @@
 @class FeCustomer;
 
 @interface FeInvoce : NSObject
-@property (copy, nonatomic) NSString *invoiceID;
-@property (copy, nonatomic) FeCustomer *customer;
+@property (strong, nonatomic) NSString *invoiceID;
+@property (strong, nonatomic) FeCustomer *customer;
 @property (strong, nonatomic) NSNumber *total;
 @property (strong, nonatomic) NSMutableArray *arrProduct;
-@property (copy, nonatomic) NSString *createdAt;
+@property (strong, nonatomic) NSString *createdAt;
 
 // Init
 -(instancetype) initWithInvoiceID:(NSString *) invoiceID customer:(FeCustomer *) customer total:(NSNumber *) total arrOfProduct:(NSMutableArray *) arrProduct createdAt:(NSString *) createdAt;

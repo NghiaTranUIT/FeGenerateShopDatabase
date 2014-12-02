@@ -34,7 +34,7 @@
     _processView.hidden = YES;
     _percentLbl.hidden = YES;
     _isGeneratingData = NO;
-    
+    _loader.hidesWhenStopped = YES;
     
 }
 
@@ -53,14 +53,29 @@
     {
         _isGeneratingData = YES;
         
+        _loader.hidden = NO;
+        _processView.hidden = NO;
+        _percentLbl.hidden = NO;
+        [_loader startAnimating];
+        
         FeGenerateObjectManager *generate = [FeGenerateObjectManager shareInstance];
         
         [generate generateDumpDataOnBackgroundWithPercentBlock:^(CGFloat percent) {
             
         } completionBlock:^(NSError *error) {
             
+            [_loader stopAnimating];
+            
+            NSLog(@"completion = %@",[self applicationDocumentsDirectory]);
         }];
     }
+}
+- (NSString *) applicationDocumentsDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    
+    return basePath;
 }
 - (IBAction)stopTapped:(UIButton *)sender
 {
