@@ -10,7 +10,7 @@
 #import "FeInvoce.h"
 #import "SBJson4Writer.h"
 
-#define kFe_FeGenerateObjectManager_NumberOfThread 5
+#define kFe_FeGenerateObjectManager_NumberOfThread 1
 #define kFe_FeGenerateObjectManager_NumberOfObjectInThread 1000
 #define kFe_FeGenerateObjectManager_NumberOfObjectNeedWrite 200
 
@@ -85,11 +85,12 @@
                     SBJson4Writer *writer = [[SBJson4Writer alloc] init];
                     writer.humanReadable = NO;
                     
-                    NSString *json = [writer stringWithObject:arrInvoice];
+                    NSData *json = [writer dataWithObject:arrInvoice];
                     
                     // Write to file
                     NSError *err;
-                    [json writeToFile:pathFile atomically:YES encoding:NSUTF16StringEncoding error:&err];
+                    //[json writeToFile:pathFile atomically:YES encoding:NSUTF16StringEncoding error:&err];
+                    [json writeToFile:pathFile atomically:YES];
                     
                     if (err)
                     {
@@ -108,16 +109,32 @@
                     SBJson4Writer *writer = [[SBJson4Writer alloc] init];
                     writer.humanReadable = NO;
                     
-                    NSString *json = [writer stringWithObject:arrInvoice];
+                    NSData *json = [writer dataWithObject:arrInvoice];
                     
                     NSFileHandle *myHandle = [NSFileHandle fileHandleForWritingAtPath:pathFile];
                     [myHandle seekToEndOfFile];
-                    [myHandle writeData:[json dataUsingEncoding:NSUTF16StringEncoding]];
+                    [myHandle writeData:json];
                     
                     [arrInvoice removeAllObjects];
                     [myHandle closeFile];
                 }
-                
+                else if (j == (kFe_FeGenerateObjectManager_NumberOfObjectInThread - 1))
+                {
+                    NSLog(@"End string to file");
+                    
+                    // Write arr to JSON file
+                    SBJson4Writer *writer = [[SBJson4Writer alloc] init];
+                    writer.humanReadable = NO;
+                    
+                    NSData *json = [writer dataWithObject:arrInvoice];
+                    
+                    NSFileHandle *myHandle = [NSFileHandle fileHandleForWritingAtPath:pathFile];
+                    [myHandle seekToEndOfFile];
+                    [myHandle writeData:json];
+                    
+                    [arrInvoice removeAllObjects];
+                    [myHandle closeFile];
+                }
             }
             
             
