@@ -9,9 +9,22 @@
 #import "NSDate+FeRandomDate.h"
 
 @implementation NSDate (FeRandomDate)
-+(NSDate *) randomDateFrom:(NSDate *)date WithCalendar:(NSCalendar *)calendar
++(NSDate *) randomDateFrom:(NSDate *)date WithCalendar:(NSCalendar *)calendar forHuman:(BOOL) human
 {
-    int r1 = arc4random_uniform(100);
+    NSInteger dentaDay = 0;
+    if (human)
+    {
+        NSInteger min = 6570; // 18 year-old
+        NSInteger max = 14600; // 40 year old
+        
+        dentaDay = rand() % (max- min) + min; //create the random number.
+    }
+    else
+    {
+        dentaDay = 365;
+    }
+    
+    int r1 = arc4random_uniform((u_int32_t)dentaDay);
     int r2 = arc4random_uniform(23);
     int r3 = arc4random_uniform(59);
     

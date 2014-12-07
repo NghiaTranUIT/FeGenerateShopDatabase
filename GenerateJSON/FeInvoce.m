@@ -40,7 +40,7 @@
     NSInteger numberOfProduct = [FeUtility randomIndexFrom:1 to:kFe_Data_MaxProduct];
     NSMutableArray *arrProduct = [NSMutableArray arrayWithCapacity:numberOfProduct];
     
-    for (NSInteger i = 0 ; i < kFe_Data_MaxProduct; i++)
+    for (NSInteger i = 0 ; i < numberOfProduct; i++)
     {
         FeProduct *product = [FeProduct productByRandom];
         total += product.quality.integerValue * product.price.doubleValue;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define kFe_Data_MaxProduct 30
+#define kFe_Data_MaxProduct 20
 
 @interface FeData : NSObject
 +(instancetype) shareData;

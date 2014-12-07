@@ -10,9 +10,9 @@
 #import "FeInvoce.h"
 #import "SBJson4Writer.h"
 
-#define kFe_FeGenerateObjectManager_NumberOfThread 1
-#define kFe_FeGenerateObjectManager_NumberOfObjectInThread 1000
-#define kFe_FeGenerateObjectManager_NumberOfObjectNeedWrite 200
+#define kFe_FeGenerateObjectManager_NumberOfThread 5
+#define kFe_FeGenerateObjectManager_NumberOfObjectInThread 40000
+#define kFe_FeGenerateObjectManager_NumberOfObjectNeedWrite 20000
 
 @interface FeGenerateObjectManager ()
 {
@@ -62,12 +62,11 @@
         // Init
         NSBlockOperation *thread = [NSBlockOperation blockOperationWithBlock:^
         {
+            typeof(self) strongSelf = weakSelf;
+            
             NSMutableArray *arrInvoice = [NSMutableArray arrayWithCapacity:kFe_FeGenerateObjectManager_NumberOfObjectInThread];
             
-            BOOL isFirstTimeWriteFile = YES;
-            NSString *pathFile = [self applicationDocumentsDirectory];
-            
-            for (NSInteger j = 0; j < kFe_FeGenerateObjectManager_NumberOfObjectInThread; j++)
+            for (NSInteger j = 1; j <= kFe_FeGenerateObjectManager_NumberOfObjectInThread; j++)
             {
                 // Invoice
                 FeInvoce *invoice = [FeInvoce invoiceByRandom];
@@ -75,11 +74,12 @@
                 // Added
                 [arrInvoice addObject:invoice];
                 
-                if (j == kFe_FeGenerateObjectManager_NumberOfObjectNeedWrite && isFirstTimeWriteFile)
+
+                if ((j != 0) && (j % kFe_FeGenerateObjectManager_NumberOfObjectNeedWrite) == 0)
                 {
-                    NSLog(@"write first time");
+                    NSLog(@"write File");
                     
-                    isFirstTimeWriteFile = NO;
+                     NSString *pathFile = [strongSelf applicationDocumentsDirectory];
                     
                     // Write arr to JSON file
                     SBJson4Writer *writer = [[SBJson4Writer alloc] init];
@@ -101,40 +101,7 @@
                     [arrInvoice removeAllObjects];
 
                 }
-                else if ((j % kFe_FeGenerateObjectManager_NumberOfObjectNeedWrite == 0) && j != 0 && isFirstTimeWriteFile == NO) // Append sttring
-                {
-                    NSLog(@"append string to file");
-                    
-                    // Write arr to JSON file
-                    SBJson4Writer *writer = [[SBJson4Writer alloc] init];
-                    writer.humanReadable = NO;
-                    
-                    NSData *json = [writer dataWithObject:arrInvoice];
-                    
-                    NSFileHandle *myHandle = [NSFileHandle fileHandleForWritingAtPath:pathFile];
-                    [myHandle seekToEndOfFile];
-                    [myHandle writeData:json];
-                    
-                    [arrInvoice removeAllObjects];
-                    [myHandle closeFile];
-                }
-                else if (j == (kFe_FeGenerateObjectManager_NumberOfObjectInThread - 1))
-                {
-                    NSLog(@"End string to file");
-                    
-                    // Write arr to JSON file
-                    SBJson4Writer *writer = [[SBJson4Writer alloc] init];
-                    writer.humanReadable = NO;
-                    
-                    NSData *json = [writer dataWithObject:arrInvoice];
-                    
-                    NSFileHandle *myHandle = [NSFileHandle fileHandleForWritingAtPath:pathFile];
-                    [myHandle seekToEndOfFile];
-                    [myHandle writeData:json];
-                    
-                    [arrInvoice removeAllObjects];
-                    [myHandle closeFile];
-                }
+                
             }
             
             
@@ -146,7 +113,7 @@
         thread.queuePriority = NSOperationQueuePriorityHigh;
         
         // Run
-        [weakSelf.queue addOperation:thread];
+        [_queue addOperation:thread];
     }
     
     

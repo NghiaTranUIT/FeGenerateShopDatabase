@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NSDate (FeRandomDate)
-+(NSDate *) randomDateFrom:(NSDate *) date WithCalendar:(NSCalendar *) calendar;
++(NSDate *) randomDateFrom:(NSDate *)date WithCalendar:(NSCalendar *)calendar forHuman:(BOOL) human;
 @end
