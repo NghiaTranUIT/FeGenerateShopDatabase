@@ -10,9 +10,9 @@
 #import "FeInvoce.h"
 #import "SBJson4Writer.h"
 
-#define kFe_FeGenerateObjectManager_NumberOfThread 5
-#define kFe_FeGenerateObjectManager_NumberOfObjectInThread 40000
-#define kFe_FeGenerateObjectManager_NumberOfObjectNeedWrite 20000
+#define kFe_FeGenerateObjectManager_NumberOfThread 1
+#define kFe_FeGenerateObjectManager_NumberOfObjectInThread 10
+#define kFe_FeGenerateObjectManager_NumberOfObjectNeedWrite 5
 
 @interface FeGenerateObjectManager ()
 {
@@ -77,7 +77,7 @@
 
                 if ((j != 0) && (j % kFe_FeGenerateObjectManager_NumberOfObjectNeedWrite) == 0)
                 {
-                    NSLog(@"write File");
+                    NSLog(@"write File at i = %ld, j = %ld",(long)i,(long)j);
                     
                      NSString *pathFile = [strongSelf applicationDocumentsDirectory];
                     
